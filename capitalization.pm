@@ -2,7 +2,7 @@ package capitalization;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 use Devel::Symdump;
 
@@ -30,6 +30,7 @@ sub unimport {
 
 sub nocap {
     my $method = shift;
+    $method =~ s/(?<=[^a-zA-Z])([A-Z]+)/lc($1)/eg;
     $method =~ s/(?<=[a-z])([A-Z]+)/"_" . lc($1)/eg;
     lcfirst $method;
 }
